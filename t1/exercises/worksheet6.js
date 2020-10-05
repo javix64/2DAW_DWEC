@@ -118,7 +118,7 @@ function exercise415(){
 function exercise416(){
     var num_adivinar=parseInt(prompt('First player, enter a number that player 2 needs to guess'))
     var num
-    while (num_adivinar!=num) {
+    do{
         num=parseInt(prompt('Second player, enter a number'))
         if (num<num_adivinar) {
             alert('the number is lowest than the guess number.')
@@ -127,6 +127,6 @@ function exercise416(){
         } else {
             alert('Your number is the same that the player one')
         }
-    }
+    }while (num_adivinar!=num)
 
 }
