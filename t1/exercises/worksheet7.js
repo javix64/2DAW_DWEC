@@ -57,3 +57,7 @@ function exercise4(array1,array2){
     totalArray=[...array1,...array2];
     console.log('The total array is: '+totalArray);
 }
+
+function exercise5(){
+    
+}
