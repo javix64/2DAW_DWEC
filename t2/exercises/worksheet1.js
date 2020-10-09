@@ -48,8 +48,10 @@ function exercise4(){
     function printCount(){
         console.log(cont);
         cont--;
-        if(!cont>=0){
+        if(cont>=0){
             setTimeout(printCount, 1000);
+        }else{
+            location.href='https://google.com';
         }
     }
     setTimeout(printCount,1000);
