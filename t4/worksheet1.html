@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onmousemove="exercise2(event)">
+    <div>
+        <h2>Exercise1</h2>
+        <p>Captura el evento onClick del ratón para que cada vez que suceda se ejecute un alert.
+        </p>
+        <button onclick="exercise1()">exercise1</button>
+    </div>
+
+    <div>
+        <h2>Exercise2</h2>
+        <p>Captura el movimiento del ratón, para que se muestre la posición en la que seencuentra en cada momento.
+        </p>
+        <form action="mouse">
+            <label for="x">X:</label>
+            <input type="text" id="x"><br>
+            <label for="y">Y:</label>
+            <input type="text" id="y">
+        </form>
+    </div>
+
+    <div>
+        <h2>Exercise4</h2>
+        <p>Eventos onMouseMove y onLoad. Debemos ser capaces de dibujar con nuestro ratónen dos colores diferentes. Para ello primero simularemos que disponemos de uncanvas gráfico: realmente se tratará de una tabla con celdas de pequeño tamaño(100x100 puede valer). Tu programa creará ese canvas una vez cargada la página(onLoad). Lo siguiente será detectar el movimiento del ratón sobre las celdas parapintarlas de un color, el cual será rojo si se mantiene pulsada simultaneamente latecla Ctrl y azul si se pulsa Shift. En otro caso no deberá pintarse nada.</p>
+        
+        <table id="tabla"></table>
+        
+    </div>
+    
+
+    <script src="worksheet1.js"></script>
+</body>
+</html>
