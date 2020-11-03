@@ -14,8 +14,8 @@ function exercise9(){
     //pones en el css la posicion de la imagen y coges las 
     //coordenadas del raton 
     botonPulsado=!botonPulsado;
-        jotaS.style.left=jotaSx+"px";
-        jotaS.style.top=jotaSy+"px";
+    jotaS.style.left=jotaSx+"px";
+    jotaS.style.top=jotaSy+"px";
 }
 function nuevoRaton(e){
     if(botonPulsado){

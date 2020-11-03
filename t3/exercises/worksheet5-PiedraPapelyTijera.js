@@ -10,13 +10,13 @@ function piedraPapelyTijera(){
             let rosh=Math.floor(Math.random()*3+1);
             switch (rosh) {
                 case 1:
-                    return this.hand='Piedra';
+                    this.hand='Piedra';
                     break;
                 case 2:
-                    return this.hand='Papel';
+                    this.hand='Papel';
                     break;
                 case 3:
-                    return this.hand='Tijera';
+                    this.hand='Tijera';
                     break;
             }
         }
@@ -27,15 +27,17 @@ function piedraPapelyTijera(){
             this.player2=player2;
         }
         partidita(){
-            if(this.player1.mano() == this.player2.mano()){
+            if(this.player1.hand == this.player2.hand){
                 return "Empate";
             }
             }
         }
-    const jugador1 = new Player(10,0,0);
+    const jugador1 = new Player(0,0,0);
     const jugador2 = new Player(0,0,0);
+    jugador1.mano();
+    jugador2.mano();
     const juego = new Game(jugador1,jugador2);
-    console.log(jugador1.mano());
-    console.log(jugador1.mano());
+    console.log(jugador1.hand);
+    console.log(jugador2.hand);
     console.log(juego.partidita());
 }
