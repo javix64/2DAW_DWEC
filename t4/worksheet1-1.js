@@ -1,5 +1,6 @@
 var jotaS = document.getElementsByTagName("img")[0];
-
+var jotaSx;
+var jotaSy;
 var botonPulsado=false;
 function exercise9(){
     /*
@@ -13,15 +14,14 @@ function exercise9(){
     //pones en el css la posicion de la imagen y coges las 
     //coordenadas del raton 
     botonPulsado=!botonPulsado;
-    if(botonPulsado==false){
-        jotaS.style.top="200px";
-        jotaS.style.left="200px";
-    }
+        jotaS.style.left=jotaSx+"px";
+        jotaS.style.top=jotaSy+"px";
 }
 function nuevoRaton(e){
     if(botonPulsado){
+        jotaSx=e.x;
+        jotaSy=e.y;
         console.log('x ='+e.x+" - "+"y ="+e.y);
-        
     }
     
 }
