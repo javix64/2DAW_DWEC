@@ -23,4 +23,5 @@ function nuevoRaton(e){
         jotaSy=e.y;
         console.log('x ='+e.x+" - "+"y ="+e.y);
     }
+    
 }
