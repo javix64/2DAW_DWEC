@@ -19,6 +19,13 @@ el navegador? Compruébalo.
 var nombre="";
 const h2=document.getElementsByTagName("h2");
 const button=document.getElementById("closeSession");
+const pColor=document.getElementsByTagName('p');
+const backColor=document.body;
+const button2=document.getElementById("changeState");
+var valPColor= document.getElementById('pColor').value;
+var valBColor= document.getElementById('backColor').value;
+var valPSize= document.getElementById('pSize').value;
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -46,5 +53,16 @@ if(getCookie("name")==""){
 }else{
     nombre=getCookie("name");
     h2[0].innerHTML="Bienvenido "+nombre;
-    
 }
+//color fondo
+//color parrafo
+//tama;o letra
+button2.addEventListener("click",changeStyle);
+function changeStyle(){
+    document.cookie="backColor="+valBColor;
+    document.cookie="pColor="+valPColor;
+    document.cookie="pSize="+valPSize;
+}
+pColor[0].style.backgroundColor=getCookie("pColor");
+pColor[0].style.fontSize=getCookie("pSize");
+backColor.style.backgroundColor=getCookie("backColor");
