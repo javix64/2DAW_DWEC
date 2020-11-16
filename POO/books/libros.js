@@ -8,3 +8,4 @@ library.addBook(libro0);
 library.addBook(libro1);
 library.addBook(libro2);
 library.addBook(libro3);
+console.log(library);

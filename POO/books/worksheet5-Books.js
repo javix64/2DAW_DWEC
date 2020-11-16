@@ -5,7 +5,7 @@ class Book{
         this.genre=genre;
         this.read=read;
         this.readDate=null;
-    }
+        }
     }
 
 
