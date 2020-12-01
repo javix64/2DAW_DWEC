@@ -1,3 +1,15 @@
+/*
+clases
+    juegos
+        constructor
+            crear tablero
+            crear objetos -> clases
+        bucle pricipal
+            mover
+            detectar colisiones
+            dibujar
+*/
+
 class bola{
     constructor(radio, color, x, y, velX, velY){
         this.r = radio;
