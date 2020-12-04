@@ -1,9 +1,9 @@
-var posX = 0; var posY = 0;
-var incX = 5; var incY=3;
+var posX = 10; var posY = 0;
+var incX = 2; var incY=20;
 var ball;
 window.onload = () =>{
     ball=document.getElementsByTagName("circle")[0];
-    setInterval(anima,10);
+    setInterval(anima,5);
 }
 
 function anima(){
