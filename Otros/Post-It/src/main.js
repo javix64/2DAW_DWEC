@@ -23,6 +23,7 @@ class Vista{
         this.textarea.setAttribute('name','contenido');
         this.divFooter.setAttribute('class','footer');
         this.pFecha.setAttribute('class','fecha');
+        this.button.setAttribute('class','delete');
         this.button.setAttribute('id','borrar');
         this.button.innerText='Borrar';
         //this.article.setAttribute('id',this.id);
@@ -54,7 +55,13 @@ class Vista{
         
         
     }
-
+    idBorrar(){
+        let borrar=document.getElementsByClassName('delete');
+        for (let i = 0; i < borrar.length; i++) {
+            borrar[i].setAttribute('id','borrar'+i);
+            
+        }
+    }
 }//fin vista
 
 class Modelo{
@@ -67,12 +74,9 @@ class Modelo{
         this.loadJson;
     }
 
-    saveAllNotes(){
-        let controla=new Controlador();
-        localStorage.clear();
-        let stringify=JSON.stringify(controla.saveStickyNotes());
+    saveAllNotes(guardar){
+        let stringify=JSON.stringify(guardar);
         localStorage.setItem('0',stringify);
-        controla=null;
     }
 
     loadAllNotes(){
@@ -95,6 +99,7 @@ class Controlador{
         //primero tengo que crear objeto-nota
         //en name, poner a que campo corresponde
         //en value, poner el valor.
+        localStorage.clear();
         var allArticle=document.getElementsByTagName('article');
         this.arrNote=[["","",""]];
         for (let i = 0; i < allArticle.length; i++) {
@@ -111,52 +116,47 @@ class Controlador{
             }
         }
         this.arrNote.shift();
-        return this.arrNote;
+        let model=new Modelo();
+        model.saveAllNotes(this.arrNote);
+        model=null;
     }
 
     loadStickyNotes(){
         let view=new Vista();
         let model=new Modelo();
         //crear tantas vista-notas como elementos en el json existan.
-        let notes= model.loadAllNotes();
+        if(localStorage.getItem(0)==null) localStorage.setItem(0,0);
+        var notes= model.loadAllNotes();
         let article=document.getElementsByTagName('article');
+
         for (let i = 0; i < notes.length; i++) {
             view.newNote();
             //meter cada modelo-nota en su correspondiente vista-nota.
-            
-        }
-        ///////////////////////
-        //      PROBLEMASSS  //
-        ///////////////////////
-        for (let j = 0; j < article.length; j++) {
-            for(let i=0;i<notes.length;i++){
-                if(j==i){
-                document.getElementsByName('titulo')[0].value=notes[i].Titulo;
-                document.getElementsByName('contenido')[0].value=notes[i].Contenido;
-                document.getElementsByClassName('fecha')[0].innerText=notes[i].Fecha;
-                }else{break}
+            for(let j=0;j<article.length;j++){
+                document.getElementsByName('titulo')[j].value=notes[j].Titulo;
+                document.getElementsByName('contenido')[j].value=notes[j].Contenido;
+                document.getElementsByClassName('fecha')[j].innerText=notes[j].Fecha;
             }
         }
-        
+        view.idBorrar();
         view=null;
         model=null;
-        
-        
-
-        
-        
     }
 
     deleteStickyNote(){
         //tengo que detectar que boton he pulsado.
         //comprobar si estoy dentro de un article
         //registrar el boton que he pulsado y borrarlo
+
         let article=document.getElementsByTagName('article');
         for (let i = 0; i < article.length; i++) {
+            let borrado=false;
             function clear(){
-                let borrar=document.getElementById('borrar');
-                borrar.addEventListener('click',function(){article[i].remove()});
+                let borrar=document.getElementById('borrar'+i);
+                borrar.addEventListener('click',function(){borrar.parentElement.parentElement.remove()});
                 console.log(i);
+                
+                
             }
             article[i].addEventListener("mouseenter", clear);
         }
@@ -164,13 +164,17 @@ class Controlador{
 } //fin controlador
 
 let vista= new Vista();
-//para crear nueva nota
+//para cambiar CSS
 let stlye=document.getElementById('style');
 style.addEventListener('click',vista.changeStyle)
+//crea una nueva nota
 let newNote=document.getElementById('newNote');
 newNote.addEventListener('click',vista.newNote);
 let controla=new Controlador();
 //para almacenar notas
 let saveNote=document.getElementById('saveNotes');
 saveNote.addEventListener('click',controla.saveStickyNotes);
-let modelo=new Modelo();
+//carga las notas que esten en local storage
+window.addEventListener('load',controla.loadStickyNotes);
+//borar notas
+window.addEventListener('load',controla.deleteStickyNote);
