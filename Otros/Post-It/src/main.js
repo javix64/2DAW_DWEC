@@ -4,6 +4,7 @@ class Vista{
         this.article;
         this.id1=0;
     }
+
     newNote(){
         // essential elements.
         this.section=document.getElementsByTagName("section")[0];
@@ -22,7 +23,6 @@ class Vista{
         this.textarea.setAttribute('name','contenido');
         this.divFooter.setAttribute('class','footer');
         this.pFecha.setAttribute('class','fecha');
-        this.pFecha.innerText='fecha actual';
         this.button.setAttribute('id','borrar');
         this.button.innerText='Borrar';
         //this.article.setAttribute('id',this.id);
@@ -37,7 +37,24 @@ class Vista{
         
     }
 
-    
+    changeStyle(){
+        //<link rel="stylesheet" href="src/darkMode.css">
+        let stylesheet=document.getElementsByTagName('link')[0];
+        stylesheet.setAttribute('rel','stylesheet');
+        let style=stylesheet.getAttribute('href');
+        let buttonText=document.getElementById('style');
+
+        if(style=='src/lightMode.css'){
+            stylesheet.setAttribute('href','src/darkMode.css');
+            buttonText.innerText='Dark Mode';
+        }else if(style=='src/darkMode.css'){
+            stylesheet.setAttribute('href','src/lightMode.css');
+            buttonText.innerText='Light Mode';
+        }
+        
+        
+    }
+
 }//fin vista
 
 class Modelo{
@@ -47,9 +64,20 @@ class Modelo{
         this.fecha;
         this.contenido;
         this.arrNote=[];
+        this.loadJson;
     }
-    getAllNotes(){
 
+    saveAllNotes(){
+        let controla=new Controlador();
+        localStorage.clear();
+        let stringify=JSON.stringify(controla.saveStickyNotes());
+        localStorage.setItem('0',stringify);
+        controla=null;
+    }
+
+    loadAllNotes(){
+        let storage=localStorage.getItem('0');
+        return this.loadJson=JSON.parse(storage);
     }
     
 }// fin modelo
@@ -60,13 +88,10 @@ class Controlador{
         this.fecha;
         this.contenido;
         this.arrNote=[];
-        this.jsonNotes;
+        this.note;
     }
-    objectStickyNote(){
-        var controla=new Controlador();
-        return controla;
-    }
-    getStickyNotes(){
+
+    saveStickyNotes(){
         //primero tengo que crear objeto-nota
         //en name, poner a que campo corresponde
         //en value, poner el valor.
@@ -77,48 +102,75 @@ class Controlador{
                 this.titulo=document.getElementsByName('titulo')[i].value;
                 this.fecha=new Date();
                 this.contenido=document.getElementsByName('contenido')[i].value;
-                this.jsonNotes={
+                this.note={
                     "Titulo":this.titulo,
                     "Fecha":this.fecha,
                     "Contenido":this.contenido
                 }
-                this.arrNote.push(this.jsonNotes);
-
-                console.log(this.jsonNotes);
+                this.arrNote.push(this.note);
             }
         }
         this.arrNote.shift();
         return this.arrNote;
     }
-    setStickyNotes(){
 
+    loadStickyNotes(){
+        let view=new Vista();
+        let model=new Modelo();
+        //crear tantas vista-notas como elementos en el json existan.
+        let notes= model.loadAllNotes();
+        let article=document.getElementsByTagName('article');
+        for (let i = 0; i < notes.length; i++) {
+            view.newNote();
+            //meter cada modelo-nota en su correspondiente vista-nota.
+            
+        }
+        ///////////////////////
+        //      PROBLEMASSS  //
+        ///////////////////////
+        for (let j = 0; j < article.length; j++) {
+            for(let i=0;i<notes.length;i++){
+                if(j==i){
+                document.getElementsByName('titulo')[0].value=notes[i].Titulo;
+                document.getElementsByName('contenido')[0].value=notes[i].Contenido;
+                document.getElementsByClassName('fecha')[0].innerText=notes[i].Fecha;
+                }else{break}
+            }
+        }
+        
+        view=null;
+        model=null;
+        
+        
+
+        
+        
     }
-    deleteNote(){
 
+    deleteStickyNote(){
+        //tengo que detectar que boton he pulsado.
+        //comprobar si estoy dentro de un article
+        //registrar el boton que he pulsado y borrarlo
+        let article=document.getElementsByTagName('article');
+        for (let i = 0; i < article.length; i++) {
+            function clear(){
+                let borrar=document.getElementById('borrar');
+                borrar.addEventListener('click',function(){article[i].remove()});
+                console.log(i);
+            }
+            article[i].addEventListener("mouseenter", clear);
+        }
     }
 } //fin controlador
-class DarkMode{
-    constructor(){
-        this.section;
-        this.header;
-        this.back-article;
-        this.h2;
-        //section               #5297a0
-        //header                #008a64
-        //back-article          #008a64
-        //h2                    #003425
-    }
-    changeStyle(){
-
-    }
-}
-
 
 let vista= new Vista();
 //para crear nueva nota
-var newNote=document.getElementById('newNote');
+let stlye=document.getElementById('style');
+style.addEventListener('click',vista.changeStyle)
+let newNote=document.getElementById('newNote');
 newNote.addEventListener('click',vista.newNote);
 let controla=new Controlador();
 //para almacenar notas
-var saveNote=document.getElementById('saveNotes');
-saveNote.addEventListener('click',controla.getStickyNotes);
+let saveNote=document.getElementById('saveNotes');
+saveNote.addEventListener('click',controla.saveStickyNotes);
+let modelo=new Modelo();
