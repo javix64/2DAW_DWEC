@@ -147,19 +147,22 @@ class Controlador{
         //tengo que detectar que boton he pulsado.
         //comprobar si estoy dentro de un article
         //registrar el boton que he pulsado y borrarlo
-
+        let modelo=new Modelo();
+        let borro=0;
         let article=document.getElementsByTagName('article');
         for (let i = 0; i < article.length; i++) {
-            let borrado=false;
             function clear(){
                 let borrar=document.getElementById('borrar'+i);
-                borrar.addEventListener('click',function(){borrar.parentElement.parentElement.remove()});
-                console.log(i);
-                
-                
+                borrar.addEventListener('click',function(){borrar.parentElement.parentElement.remove();borro=i});
+                /* let save=modelo.loadAllNotes().splice(i, 1);
+                modelo.saveAllNotes(save);
+                console.log(i); */
             }
             article[i].addEventListener("mouseenter", clear);
+            
         }
+        let save=modelo.loadAllNotes().splice(borro, 1);
+        modelo.saveAllNotes(save);
     }
 } //fin controlador
 
