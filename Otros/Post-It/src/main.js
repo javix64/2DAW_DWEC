@@ -35,7 +35,9 @@ class Vista{
         this.article.append(this.divFooter);
         //falta autoincrementar id
         //y tampoco falta porque puedo hacer un getelementsbytagname.
-        
+        let view=new Vista();
+        view.idBorrar();
+        view=null;
     }
 
     changeStyle(){
@@ -138,7 +140,6 @@ class Controlador{
                 document.getElementsByClassName('fecha')[j].innerText=notes[j].Fecha;
             }
         }
-        view.idBorrar();
         view=null;
         model=null;
     }
@@ -148,7 +149,7 @@ class Controlador{
         //comprobar si estoy dentro de un article
         //registrar el boton que he pulsado y borrarlo
         let modelo=new Modelo();
-        let borro=0;
+        let borro;
         let article=document.getElementsByTagName('article');
         for (let i = 0; i < article.length; i++) {
             function clear(){
@@ -159,10 +160,7 @@ class Controlador{
                 console.log(i); */
             }
             article[i].addEventListener("mouseenter", clear);
-            
         }
-        let save=modelo.loadAllNotes().splice(borro, 1);
-        modelo.saveAllNotes(save);
     }
 } //fin controlador
 
@@ -180,4 +178,5 @@ saveNote.addEventListener('click',controla.saveStickyNotes);
 //carga las notas que esten en local storage
 window.addEventListener('load',controla.loadStickyNotes);
 //borar notas
-window.addEventListener('load',controla.deleteStickyNote);
+
+window.addEventListener('click',controla.deleteStickyNote);
