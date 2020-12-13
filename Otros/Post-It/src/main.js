@@ -60,7 +60,7 @@ class Controlador{
         this.fecha;
         this.contenido;
         this.arrNote=[];
-        
+        this.jsonNotes;
     }
     objectStickyNote(){
         var controla=new Controlador();
@@ -77,7 +77,14 @@ class Controlador{
                 this.titulo=document.getElementsByName('titulo')[i].value;
                 this.fecha=new Date();
                 this.contenido=document.getElementsByName('contenido')[i].value;
-                this.arrNote.push([this.titulo,this.fecha,this.contenido]);
+                this.jsonNotes={
+                    "Titulo":this.titulo,
+                    "Fecha":this.fecha,
+                    "Contenido":this.contenido
+                }
+                this.arrNote.push(this.jsonNotes);
+
+                console.log(this.jsonNotes);
             }
         }
         this.arrNote.shift();
