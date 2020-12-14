@@ -148,20 +148,35 @@ class Controlador{
         //tengo que detectar que boton he pulsado.
         //comprobar si estoy dentro de un article
         //registrar el boton que he pulsado y borrarlo
+        
+        ////////////////////////////////
+        // IT DOESNT WORK      <3     //
+        ////////////////////////////////
         let modelo=new Modelo();
+        let article=document.getElementsByClassName('delete');
+        document.getElementById('borrar1').addEventListener('click',function(){article[0].parentElement.parentElement.remove();modelo.loadAllNotes().splice(0,1);modelo.saveAllNotes(modelo.loadAllNotes());});
+        /*
+        //metodo bonito pero que no ha llegado a funcionar
         let borro;
         let article=document.getElementsByTagName('article');
         for (let i = 0; i < article.length; i++) {
             function clear(){
                 let borrar=document.getElementById('borrar'+i);
-                borrar.addEventListener('click',function(){borrar.parentElement.parentElement.remove();borro=i});
-                /* let save=modelo.loadAllNotes().splice(i, 1);
-                modelo.saveAllNotes(save);
-                console.log(i); */
+                borrar.addEventListener('click',function(){borrar.parentElement.parentElement.remove();borro=i;});
+                //let save=modelo.loadAllNotes().splice(i, 1);
+                //modelo.saveAllNotes(save);
+                
             }
             article[i].addEventListener("mouseenter", clear);
+            
+            return borro=i;
+            break;
         }
+            */
+        //modelo.saveAllNotes(modelo.loadAllNotes().splice(borro,1));
+
     }
+
 } //fin controlador
 
 let vista= new Vista();
@@ -178,5 +193,5 @@ saveNote.addEventListener('click',controla.saveStickyNotes);
 //carga las notas que esten en local storage
 window.addEventListener('load',controla.loadStickyNotes);
 //borar notas
-
-window.addEventListener('click',controla.deleteStickyNote);
+let deleteNote=document.getElementById('deleteNotes');
+deleteNote.addEventListener('click',controla.deleteStickyNote);
