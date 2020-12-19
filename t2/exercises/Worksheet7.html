@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>The <strong>geolocation API</strong> allows the user to provide their location to web applications if they so desire. For privacy reasons, the user is asked for permission to report location information.</p>
+    <p>The geolocation API is published through the <code>navigator.geolocation</code> object. If the object exists, geolocation services are available.</p>
+    <ol>
+    <li>Develop a web app in which:
+    <ol>
+    <li>Test if geolocation is available.</li>
+    <li>If it's available, show the current position (latitude and longitude)</li>
+    <li>If it isn't available, show a message for each and everyone of the possible errors.</li>
+    <li>Improve your code so you show the position continuously (although the user could be in moving, so it could change)</li>
+    <li>Find the way to meassure the distance traveled.</li>
+    </ol>
+    </li>
+    <li>Let's try to use the geolocation information with the API of Google Maps.
+    <ol>
+    <li>Use a map to show your location</li>
+    <li>Draw a marker in your location</li>
+    <li>Find a way to know the address of your location (reverse geocoding).</li>
+    </ol>
+    </li>
+    <li>Repeat exercise 2 using another maps library, like LeafletJS.</li>
+    <li>OPTIONAL. Complete exercise 2 with these new features:
+    <ol>
+    <li>Look for the way to animate your marker</li>
+    <li>Draw the position of the user correctly although it could be moving.</li>
+    <li>Draw the route of the user over the map.</li>
+    </ol>
+    <script src="worksheet7.js"></script>
+    <h1>GOOGLE MAPS API EXAMPLE</h1>
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=FIzaSyAkGI5PzAKHvKdBcW2MsLljqrZQCRFIko4&callback=mapCharged"></script>
+    </body>
+    </html>
