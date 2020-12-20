@@ -5,8 +5,7 @@ class Book{
         this.genre=genre;
         this.read=read;
         this.readDate=null;
-        }
-    
+        }    
     }
 
 
@@ -50,8 +49,12 @@ class BookList{
 }
 class View{
     constructor(){
+        this.title;
+        this.author;
+        this.genre;
+        this.readDate;
     }
-    draw(){
+    newBook(){
         //new elements in booklist
         const readingList = document.getElementsByClassName('readingList')[0];
         const article = document.createElement('article');
@@ -73,9 +76,13 @@ class View{
         pGenre.setAttribute('id','pGenre');
         pDate.setAttribute('id','date');
         //set innerText
-        pTitle.innerText=titleValue;
-        pAuthor.innerText=authorValue;
-        pGenre.innerText=genreValue;
+        this.title=titleValue;
+        this.author=authorValue;
+        this.genre=genreValue;
+        const book=new Book(this.title,this.author,this.genre);
+        pTitle.innerText=this.title;
+        pAuthor.innerText=this.author;
+        pGenre.innerText=this.genre;
         //append to class readinglist;
         readingList.append(article);
         article.append(info);
@@ -98,5 +105,4 @@ library.addBook(libro2);
 library.addBook(libro3);
 console.log(library);
 const vista= new View();
-document.getElementById('newBook').addEventListener('click,',vista.draw);
-setTimeout(vista.draw,3000);
+document.getElementById('newBook').addEventListener('click',function(){vista.newBook();});
