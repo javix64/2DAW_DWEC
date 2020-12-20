@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
+    <link rel="stylesheet" href="src/main.css">
 </head>
 <body>
     <h1>Libros</h1>
+    <main>
+        <section class="addBook">
+            <h2>Book</h2>
+            <p>Title:</p> <br>
+            <input type="text" id="title">
+            <p>Author:</p> <br>
+            <input type="text" id="author">
+            <p>Genre:</p> <br>
+            <input type="text" id="genre">
+            <button id="newBook">New Book</button>
+        </section>
+        <section class="bookList">
+            <h2>My Reading List</h2>
+            <div class="readingList">
+                <article>
+                    <div class="info">
+                        <p id="pTitle">El médico</p>
+                        <div class="other">
+                            <p id="pAuthor">Manolito gafotas</p>
+                            <p id="pGenre">Novela verdeoscura</p>
+                        </div>
+                    </div>
+                    <p id="date">Leido el VIernes, 20 octubre 2020</p>
+                </article>
+                <p id='booksRead'><b>Libros Leidos:</b> </p>
+            </div>
+        </section>
+    </main>
+
     
-    <script src="libros.js" type="module"></script>
+    <script src="src/worksheet5-Books.js"></script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: khaki;
+}
+h1{
+    text-align:center;
+
+}
+h2{
+    text-align: center;
+}
+main{
+    display:flex;
+    flex-direction: row;
+}
+button{
+    margin-top:20px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius:20px;
+}
+section.addBook{
+    border: 2px solid black;
+    border-radius: 30px;
+    padding:10px;
+    margin-left:20px;
+    display:flex;
+    flex-direction: column;
+}
+section.bookList{
+    margin-left:20px;
+    margin-right:20px;
+    padding:10px;
+    flex-grow: 2;
+    width:100%;
+}
+article{
+    width:98%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding:20px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+#booksRead{
+    text-align: center;
+}
+div.info{
+    flex-direction: column;
+    
+}
+div.other{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+div.other > p{
+    margin-right:50px;
+}
